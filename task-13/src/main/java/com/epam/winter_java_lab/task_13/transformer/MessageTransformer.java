@@ -14,7 +14,18 @@ public class MessageTransformer {
                 .withTag(message.getTag())
                 .withCreatedDateTime(message.getCreatedDateTime())
                 .withUpdatedDateTime(message.getUpdatedDateTime())
-                .withAuthor(message.getAuthor())
+                .withUserId(message.getUserId())
+                .build();
+    }
+
+    public Message toEntity(MessageDto messageDto) {
+        return Message.builder()
+                .withId(messageDto.getId())
+                .withText(messageDto.getText())
+                .withTag(messageDto.getTag())
+                .withCreatedDateTime(messageDto.getCreatedDateTime())
+                .withUpdatedDateTime(messageDto.getUpdatedDateTime())
+                .withUserId(messageDto.getUserId())
                 .build();
     }
 }

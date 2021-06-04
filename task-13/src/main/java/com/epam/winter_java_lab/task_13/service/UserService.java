@@ -1,4 +1,4 @@
-package com.epam.winter_java_lab.task_13.service.Impl;
+package com.epam.winter_java_lab.task_13.service;
 
 import com.epam.winter_java_lab.task_13.domain.Role;
 import com.epam.winter_java_lab.task_13.domain.User;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -30,41 +29,28 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findByUsername(username)
-                .orElseThrow(() ->new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    public UserDto addUser(User user){
-        return userRepo.findByUsername(user.getUsername())
-                .or(() -> Optional.of(createUser(user)))
+    public UserDto addUser(UserDto userDto){
+        return userRepo.findByUsername(userTransformer.toEntity(userDto).getUsername())
+                .or(() -> Optional.of(createUser(userTransformer.toEntity(userDto))))
                 .map(userTransformer::transform)
                 .orElseThrow();
     }
 
     private User createUser(User user) {
         user.setActive(true);
-        user.setRegistrationDateTime(System.currentTimeMillis());
         user.setRoles(Collections.singleton(Role.USER));
         userRepo.saveAndFlush(user);
         return user;
     }
 
     @Transactional(readOnly = true)
-    public Page<UserDto> findAll() {
-        return userRepo.findAll(Pageable.unpaged()).map(userTransformer::transform);
+    public Page<UserDto> findAllUsers(Pageable pageable) {
+        return userRepo.findAll(pageable).map(userTransformer::transform);
     }
 
-    public void saveUser(User user, String username, Map<String, String> form) {
-        user.setUsername(username);
-        Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
-        user.getRoles().clear();
-
-        for(String key : form.keySet()){
-            if(roles.contains(key)){
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
-        userRepo.save(user);
-    }
 }
 
 

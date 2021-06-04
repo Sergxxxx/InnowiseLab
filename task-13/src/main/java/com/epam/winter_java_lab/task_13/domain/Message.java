@@ -4,14 +4,14 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Builder(setterPrefix = "with")
 @Table(name = "message")
 @NoArgsConstructor
@@ -50,27 +50,14 @@ public class Message {
 
     @Getter
     @Setter
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User author;
+    private Long userId;
 
-    public Message(String text, String tag, User user) {
+    public Message(String text, String tag) {
         this.text = text;
         this.tag = tag;
-        this.author = user;
     }
 
-    public String getAuthorName(){
-        return author != null ? author.getUsername() : "<none>";
-    }
-
-    public void setUpdatedDateTime(Long updatedDateTime) {
-        this.updatedDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(updatedDateTime), ZoneId.systemDefault());
-    }
-
-    public void setCreatedDateTime(Long createdDateTime) {
-        this.createdDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(createdDateTime), ZoneId.systemDefault());
-    }
 }
 
 
