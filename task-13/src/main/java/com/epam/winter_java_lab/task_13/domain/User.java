@@ -1,10 +1,9 @@
 package com.epam.winter_java_lab.task_13.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,7 +18,11 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "usr")
+@Builder(setterPrefix = "with")
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 public class User implements UserDetails {
     @Getter
@@ -46,20 +49,14 @@ public class User implements UserDetails {
 
     @Getter
     @Setter
-    @NotBlank(message = "Password confirmation cannot be empty")
-    @Transient
-    private String passwordConf;
-
-    @Getter
-    @Setter
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Email isn't correct")
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Getter
     @CreatedDate
-    @Column(name = "registration_date_time", nullable = false)
+    @Column(name = "registration_date_time", updatable = false, nullable = false)
     private LocalDateTime registrationDateTime;
 
     @Setter
@@ -73,18 +70,13 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    @Getter
-    @Setter
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Message> messages;
-
     public boolean isAdmin(){
         return roles.contains(Role.ADMIN);
     }
 
-    public void setRegistrationDateTime(Long registrationDateTime) {
-        this.registrationDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(registrationDateTime), ZoneId.systemDefault());
-    }
+//    public void setRegistrationDateTime(Long registrationDateTime) {
+//        this.registrationDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(registrationDateTime), ZoneId.systemDefault());
+//    }
 
     public boolean isActive() {
         return active;

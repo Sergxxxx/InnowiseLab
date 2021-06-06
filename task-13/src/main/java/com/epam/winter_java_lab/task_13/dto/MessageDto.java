@@ -1,6 +1,5 @@
 package com.epam.winter_java_lab.task_13.dto;
 
-import com.epam.winter_java_lab.task_13.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +22,6 @@ public class MessageDto {
 
     private LocalDateTime updatedDateTime;
 
-    private User author;
+    private Long userId;
 
 }

@@ -27,6 +27,4 @@ public class UserDto {
     private boolean active;
 
     private Set<Role> roles;
-
-    private Set<Message> messages;
 }

@@ -15,7 +15,17 @@ public class UserTransformer {
                 .withRegistrationDateTime(user.getRegistrationDateTime())
                 .withActive(user.isActive())
                 .withRoles(user.getRoles())
-                .withMessages(user.getMessages())
+                .build();
+    }
+
+    public User toEntity(UserDto userDto) {
+        return User.builder()
+                .withId(userDto.getId())
+                .withUsername(userDto.getUsername())
+                .withEmail(userDto.getEmail())
+                .withRegistrationDateTime(userDto.getRegistrationDateTime())
+                .withActive(userDto.isActive())
+                .withRoles(userDto.getRoles())
                 .build();
     }
 }
