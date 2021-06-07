@@ -18,7 +18,11 @@ public class UserTransformer {
                 .build();
     }
 
+<<<<<<< HEAD
     public User transformToEntity(UserDto userDto) {
+=======
+    public User toEntity(UserDto userDto) {
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
         return User.builder()
                 .withId(userDto.getId())
                 .withUsername(userDto.getUsername())

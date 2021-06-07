@@ -41,6 +41,11 @@ public class Message {
     @Column (name = "updated_date_time", nullable = false)
     private LocalDateTime updatedDateTime;
 
+<<<<<<< HEAD
+=======
+    @Getter
+    @Setter
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
     @JoinColumn(name = "user_id")
     private Long userId;
 

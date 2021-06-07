@@ -3,48 +3,52 @@ package com.epam.winter_java_lab.task_13.service;
 import com.epam.winter_java_lab.task_13.domain.Role;
 import com.epam.winter_java_lab.task_13.domain.User;
 import com.epam.winter_java_lab.task_13.dto.UserDto;
-import com.epam.winter_java_lab.task_13.exception.UsernameNotFoundException;
-import com.epam.winter_java_lab.task_13.repos.UserRepository;
+import com.epam.winter_java_lab.task_13.repos.UserRepo;
 import com.epam.winter_java_lab.task_13.transformer.UserTransformer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
 @Service
-public class UserService {
-    private final UserRepository userRepository;
+public class UserService implements UserDetailsService {
+
+    private final UserRepo userRepo;
     private final UserTransformer userTransformer;
 
-    public UserService(UserRepository userRepository, UserTransformer userTransformer) {
-        this.userRepository = userRepository;
+    public UserService(UserRepo userRepo, UserTransformer userTransformer) {
+        this.userRepo = userRepo;
         this.userTransformer = userTransformer;
     }
 
-    public UserDto loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userTransformer.transformToDto(userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("Username %s does not exist", username))));
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     public UserDto addUser(UserDto userDto){
-        return userRepository.findByUsername(userTransformer.transformToEntity(userDto).getUsername())
-                .or(() -> Optional.of(createUser(userTransformer.transformToEntity(userDto))))
-                .map(userTransformer::transformToDto)
+        return userRepo.findByUsername(userTransformer.toEntity(userDto).getUsername())
+                .or(() -> Optional.of(createUser(userTransformer.toEntity(userDto))))
+                .map(userTransformer::transform)
                 .orElseThrow();
     }
 
     private User createUser(User user) {
+        user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-        userRepository.saveAndFlush(user);
+        userRepo.saveAndFlush(user);
         return user;
     }
 
     @Transactional(readOnly = true)
     public Page<UserDto> findAllUsers(Pageable pageable) {
-        return userRepository.findAll(pageable).map(userTransformer::transformToDto);
+        return userRepo.findAll(pageable).map(userTransformer::transform);
     }
 
 }

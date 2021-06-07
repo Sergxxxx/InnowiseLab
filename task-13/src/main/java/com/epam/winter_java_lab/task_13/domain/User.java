@@ -4,6 +4,11 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+<<<<<<< HEAD
+=======
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -16,7 +21,10 @@ import java.util.Set;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "usr")
 @Builder(setterPrefix = "with")
+<<<<<<< HEAD
 @Data
+=======
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
@@ -37,6 +45,11 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+<<<<<<< HEAD
+=======
+    @Getter
+    @Setter
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Email isn't correct")
     @Column(name = "email", unique = true, nullable = false)
@@ -58,6 +71,13 @@ public class User {
         return roles.contains(Role.ADMIN);
     }
 
+<<<<<<< HEAD
+=======
+//    public void setRegistrationDateTime(Long registrationDateTime) {
+//        this.registrationDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(registrationDateTime), ZoneId.systemDefault());
+//    }
+
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
     public boolean isActive() {
         return active;
     }

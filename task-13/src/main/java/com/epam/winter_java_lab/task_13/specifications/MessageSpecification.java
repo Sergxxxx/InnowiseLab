@@ -7,11 +7,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageSpecification {
     public static Specification<Message> getMessagesByText(String text) {
+<<<<<<< HEAD
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("text"), text);
     }
 
     public static Specification<Message> getMessagesByTag(String tag) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("tag"), tag);
+=======
+        return (Specification<Message>) (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("text"), text);
+    }
+
+    public static Specification<Message> getMessagesByTag(String tag) {
+        return (Specification<Message>) (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("tag"), tag);
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
     }
 
 }

@@ -25,11 +25,19 @@ public class MessageRepositoryCustomImpl implements MessageRepositoryCustom{
         // create message query
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Message> cq = cb.createQuery(Message.class);
+<<<<<<< HEAD
         Root<Message> messageRoot = cq.from(Message.class);
 
         Predicate textPredicate = cb.like(messageRoot.get("text"), "%" + text + "%");
 
         Predicate tagPredicate = cb.like(messageRoot.get("tag"), "%" + tag + "%");
+=======
+        Root<Message> user = cq.from(Message.class);
+
+        Predicate textPredicate = cb.like(user.get("text"), "%" + text + "%");
+
+        Predicate tagPredicate = cb.like(user.get("tag"), "%" + tag + "%");
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
 
         cq.where(textPredicate, tagPredicate);
 

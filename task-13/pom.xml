@@ -18,6 +18,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<<<<<<< HEAD
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <java.version>11</java.version>
@@ -30,6 +31,13 @@
     <org.springdoc.version>1.5.6</org.springdoc.version>
     <org.apache.commons.version>1.5</org.apache.commons.version>
     <org.projectlombok.version>1.18.20</org.projectlombok.version>
+=======
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <java.version>1.8</java.version>
+    <io.vavr.version>0.9.1</io.vavr.version>
+    <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
   </properties>
 
   <dependencies>
@@ -113,15 +121,26 @@
       <scope>provided</scope>
     </dependency>
 
+<!--    <dependency>-->
+<!--      <groupId>io.springfox</groupId>-->
+<!--      <artifactId>springfox-swagger2</artifactId>-->
+<!--      <version>2.6.1</version>-->
+<!--    </dependency>-->
+
     <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-ui</artifactId>
+<<<<<<< HEAD
       <version>${org.springdoc.version}</version>
+=======
+      <version>1.5.6</version>
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
     </dependency>
 
     <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-data-rest</artifactId>
+<<<<<<< HEAD
       <version>${org.springdoc.version}</version>
     </dependency>
 
@@ -136,6 +155,34 @@
       <artifactId>mapstruct</artifactId>
       <version>${org.mapstruct.version}</version>
     </dependency>
+=======
+      <version>1.5.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.vavr</groupId>
+      <artifactId>vavr</artifactId>
+      <version>${io.vavr.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId> <!-- OR use this with Java 8 and beyond: <artifactId>mapstruct-jdk8</artifactId> -->
+      <version>${org.mapstruct.version}</version>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>io.swagger</groupId>-->
+<!--      <artifactId>swagger-annotations</artifactId>-->
+<!--      <version>2.0.0-rc2</version>-->
+<!--    </dependency>-->
+
+<!--    <dependency>-->
+<!--      <groupId>io.springfox</groupId>-->
+<!--      <artifactId>springfox-swagger-ui</artifactId>-->
+<!--      <version>2.6.1</version>-->
+<!--    </dependency>-->
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
   </dependencies>
 
   <build>

@@ -18,7 +18,11 @@ public class MessageTransformer {
                 .build();
     }
 
+<<<<<<< HEAD
     public Message transformToEntity(MessageDto messageDto) {
+=======
+    public Message toEntity(MessageDto messageDto) {
+>>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
         return Message.builder()
                 .withId(messageDto.getId())
                 .withText(messageDto.getText())
