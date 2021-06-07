@@ -1,6 +1,5 @@
 package com.epam.winter_java_lab.task_13.dto;
 
-import com.epam.winter_java_lab.task_13.domain.Message;
 import com.epam.winter_java_lab.task_13.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +26,4 @@ public class UserDto {
     private boolean active;
 
     private Set<Role> roles;
-
-    private Set<Message> messages;
 }

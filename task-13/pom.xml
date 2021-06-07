@@ -18,9 +18,18 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-    <java.version>1.8</java.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <java.version>11</java.version>
+    <io.vavr.version>0.9.1</io.vavr.version>
+    <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
+    <org.junit.jupiter.version>5.7.0</org.junit.jupiter.version>
+    <org.hibernate.version>6.1.0.Final</org.hibernate.version>
+    <mysql.version>8.0.23</mysql.version>
+    <org.liquibase.version>4.3.1</org.liquibase.version>
+    <org.springdoc.version>1.5.6</org.springdoc.version>
+    <org.apache.commons.version>1.5</org.apache.commons.version>
+    <org.projectlombok.version>1.18.20</org.projectlombok.version>
   </properties>
 
   <dependencies>
@@ -51,14 +60,14 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.7.0</version>
+      <version>${org.junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.7.0</version>
+      <version>${org.junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -70,43 +79,26 @@
     <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
-      <version>4.3.1</version>
+      <version>${org.liquibase.version}</version>
     </dependency>
 
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.23</version>
+      <version>${mysql.version}</version>
       <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>2.0.1.Final</version>
     </dependency>
 
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>6.1.0.Final</version>
+      <version>${org.hibernate.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-email</artifactId>
-      <version>1.5</version>
+      <version>${org.apache.commons.version}</version>
     </dependency>
 
     <dependency>
@@ -117,28 +109,34 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.20</version>
+      <version>${org.projectlombok.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>2.6.1</version>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>${org.springdoc.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger-ui</artifactId>
-      <version>2.6.1</version>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-data-rest</artifactId>
+      <version>${org.springdoc.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.vavr</groupId>
+      <artifactId>vavr</artifactId>
+      <version>${io.vavr.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${org.mapstruct.version}</version>
     </dependency>
   </dependencies>
-
-  <dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-ui</artifactId>
-    <version>1.5.2</version>
-  </dependency>
 
   <build>
     <plugins>
@@ -156,8 +154,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <source>10</source>
+          <target>10</target>
         </configuration>
       </plugin>
 
