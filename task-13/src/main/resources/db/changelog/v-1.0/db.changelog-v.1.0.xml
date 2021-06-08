@@ -1,11 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <include file="01-changeset-usr-table.xml" relativeToChangelogFile="true"/>
-    <include file="10-changeset-message-table.xml" relativeToChangelogFile="true"/>
-    <include file="20-changeset-user_role-table.xml" relativeToChangelogFile="true"/>
+    <changeSet id="Create/Update tables" author="Serg" runOnChange="true">
+        <!-- Create table usr-->
+        <createTable tableName="usr">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+            </column>
+            <column name="username" type="varchar(255)">
+            </column>
+            <column name="email" type="varchar(255)">
+            </column>
+            <column name="registration_date_time" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement columnName="id" tableName="usr" columnDataType="bigint"/>
+
+        <!-- Create table message-->
+        <createTable tableName="message">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="tag" type="varchar(255)">
+            </column>
+            <column name="text" type="varchar(255)">
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="message_FK_1"
+                             referencedTableName="usr" referencedColumnNames="id" deleteCascade="true"/>
+            </column>
+            <column name="created_date_time" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_date_time" type="timestamp">
+            </column>
+        </createTable>
+        <addAutoIncrement columnName="id" tableName="message" columnDataType="bigint"/>
+
+        <!-- Create table user_role-->
+        <createTable tableName="user_role">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="user_role_FK_1"
+                             referencedTableName="usr" referencedColumnNames="id" deleteCascade="true"/>
+            </column>
+            <column name="roles" type="varchar(255)">
+            </column>
+        </createTable>
+
+        <!-- Loading of Data -->
+        <loadData encoding="UTF-8"
+                  file="db/changelog/v-1.0/user.csv"
+                  tableName="usr"
+                  separator=";">
+        </loadData>
+    </changeSet>
+
+    <changeSet id="07-07-2021-create-message-history" author="Serg" runOnChange="true">
+        <sqlFile
+                dbms="postgresql"
+                endDelimiter="$$"
+                path="db/changelog/v-1.0/create_procedure_message_history.sql"/>
+    </changeSet>
+
+    <changeSet id="08-07-2021-create-custom-type-PgQl" author="Serg" runOnChange="true">
+        <sqlFile
+                dbms="postgresql"
+                endDelimiter="$$"
+                path="db/changelog/v-1.0/create_custom_type.sql"/>
+    </changeSet>
+
+    <changeSet id="08-07-2021-create-rollback-message" author="Serg" runOnChange="true">
+        <sqlFile
+                dbms="postgresql"
+                endDelimiter="$$"
+                path="db/changelog/v-1.0/create_ procedure_rollback_message.sql"/>
+    </changeSet>
 
 </databaseChangeLog>

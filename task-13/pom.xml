@@ -11,33 +11,26 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.4.3</version>
+    <version>2.5.2</version>
   </parent>
 
   <name>task-13 Maven Webapp</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<<<<<<< HEAD
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <java.version>11</java.version>
     <io.vavr.version>0.9.1</io.vavr.version>
-    <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
     <org.junit.jupiter.version>5.7.0</org.junit.jupiter.version>
     <org.hibernate.version>6.1.0.Final</org.hibernate.version>
     <mysql.version>8.0.23</mysql.version>
+    <org.postgresql.version>42.2.18</org.postgresql.version>
     <org.liquibase.version>4.3.1</org.liquibase.version>
     <org.springdoc.version>1.5.6</org.springdoc.version>
-    <org.apache.commons.version>1.5</org.apache.commons.version>
     <org.projectlombok.version>1.18.20</org.projectlombok.version>
-=======
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-    <java.version>1.8</java.version>
-    <io.vavr.version>0.9.1</io.vavr.version>
-    <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
->>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
+    <org.apache.maven.plugins.version>3.8.1</org.apache.maven.plugins.version>
+    <org.testcontainers.version>1.15.3</org.testcontainers.version>
   </properties>
 
   <dependencies>
@@ -51,6 +44,61 @@
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
       <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>${org.springdoc.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-data-rest</artifactId>
+      <version>${org.springdoc.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>${org.liquibase.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${org.postgresql.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${org.hibernate.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${org.projectlombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.vavr</groupId>
+      <artifactId>vavr</artifactId>
+      <version>${io.vavr.version}</version>
     </dependency>
 
     <dependency>
@@ -80,146 +128,40 @@
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.liquibase</groupId>
-      <artifactId>liquibase-core</artifactId>
-      <version>${org.liquibase.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>${org.hibernate.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-email</artifactId>
-      <version>${org.apache.commons.version}</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.7.0</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-validation</artifactId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${org.projectlombok.version}</version>
-      <scope>provided</scope>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${org.testcontainers.version}</version>
+      <scope>test</scope>
     </dependency>
-
-<!--    <dependency>-->
-<!--      <groupId>io.springfox</groupId>-->
-<!--      <artifactId>springfox-swagger2</artifactId>-->
-<!--      <version>2.6.1</version>-->
-<!--    </dependency>-->
-
-    <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>springdoc-openapi-ui</artifactId>
-<<<<<<< HEAD
-      <version>${org.springdoc.version}</version>
-=======
-      <version>1.5.6</version>
->>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
-    </dependency>
-
-    <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>springdoc-openapi-data-rest</artifactId>
-<<<<<<< HEAD
-      <version>${org.springdoc.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.vavr</groupId>
-      <artifactId>vavr</artifactId>
-      <version>${io.vavr.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mapstruct</groupId>
-      <artifactId>mapstruct</artifactId>
-      <version>${org.mapstruct.version}</version>
-    </dependency>
-=======
-      <version>1.5.6</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.vavr</groupId>
-      <artifactId>vavr</artifactId>
-      <version>${io.vavr.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mapstruct</groupId>
-      <artifactId>mapstruct</artifactId> <!-- OR use this with Java 8 and beyond: <artifactId>mapstruct-jdk8</artifactId> -->
-      <version>${org.mapstruct.version}</version>
-    </dependency>
-
-<!--    <dependency>-->
-<!--      <groupId>io.swagger</groupId>-->
-<!--      <artifactId>swagger-annotations</artifactId>-->
-<!--      <version>2.0.0-rc2</version>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--      <groupId>io.springfox</groupId>-->
-<!--      <artifactId>springfox-swagger-ui</artifactId>-->
-<!--      <version>2.6.1</version>-->
-<!--    </dependency>-->
->>>>>>> 04818681b3ffc775807441cf756a5b5e07d1c8ed
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.liquibase</groupId>
-        <artifactId>liquibase-maven-plugin</artifactId>
-        <version>3.6.3</version>
-        <configuration>
-          <propertyFile>${project.basedir}/src/main/resources/liquibase.properties</propertyFile>
-        </configuration>
-      </plugin>
-
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>${org.apache.maven.plugins.version}</version>
         <configuration>
-          <source>10</source>
-          <target>10</target>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
         </configuration>
       </plugin>
 
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
-          <executions>
-            <execution>
-              <goals>
-                <goal>repackage</goal>
-              </goals>
-              <configuration>
-                <mainClass>com/epam/winter_java_lab/task_13/ServingWebContentApplication.java</mainClass>
-                <outputDirectory>${project.basedir}/docker</outputDirectory>
-              </configuration>
-            </execution>
-          </executions>
         </plugin>
       </plugins>
   </build>

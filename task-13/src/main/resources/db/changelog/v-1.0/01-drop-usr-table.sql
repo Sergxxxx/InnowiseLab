@@ -1,8 +1,0 @@
-DROP TABLE message
-GO
-
-DROP TABLE user_role
-GO
-
-DROP TABLE usr
-GO
