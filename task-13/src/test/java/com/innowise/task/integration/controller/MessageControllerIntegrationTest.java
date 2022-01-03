@@ -30,7 +30,7 @@ import java.util.Optional;
 
 import static com.innowise.task.controller.MessageController.MESSAGES_BASE_URL;
 import static com.innowise.task.controller.MessageController.MESSAGE_BASE_URL;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.only;

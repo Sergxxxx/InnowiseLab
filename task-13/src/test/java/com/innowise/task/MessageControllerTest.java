@@ -29,7 +29,7 @@ public class MessageControllerTest {
     private static final String TAG = "tag";
 
     @Mock
-    MessageService messageService;
+    private MessageService messageService;
 
     @InjectMocks
     private MessageController messageController;

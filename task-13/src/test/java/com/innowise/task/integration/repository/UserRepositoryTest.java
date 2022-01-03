@@ -17,6 +17,7 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.given;
 
 @DataJpaTest
 @SqlGroup({
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         @Sql("/sql/dataMessage.sql")
 })
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles({"test", "enable-jpa-audition"})
+//@ActiveProfiles({"test", "enable-jpa-audition"})
 @PostgreSQLTestContainer
 @DirtiesContext
 public class UserRepositoryTest {
@@ -60,6 +61,11 @@ public class UserRepositoryTest {
         assertEquals(Optional.of(USER_ONE), userRepository.findAll(PAGEABLE).get().findFirst());
         assertEquals(2, userRepository.findAll(PAGEABLE).getTotalElements());
         assertEquals(1, userRepository.findAll(PAGEABLE).getTotalPages());
+    }
+
+    @Test
+    void shouldSaveUser1() {
+        assertEquals(USER_ONE, userRepository.save(USER_ONE));
     }
 
 }

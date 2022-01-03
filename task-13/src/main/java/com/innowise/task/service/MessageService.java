@@ -16,14 +16,13 @@ import java.util.Optional;
 
 @Service
 public class MessageService {
-
-    private final MessageRepository messageRepository;
-    private final MessageTransformer messageTransformer;
-
     private static final int PAGE_NUMBER = 0;
     private static final int SIZE = 10;
     public static final PageRequest DEFAULT_PAGEABLE = PageRequest.of(PAGE_NUMBER, SIZE);
     private static final String ERROR_MESSAGE_REQUEST = "Message id %d does not exist";
+
+    private final MessageRepository messageRepository;
+    private final MessageTransformer messageTransformer;
 
     public MessageService(MessageRepository messageRepository, MessageTransformer messageTransformer) {
         this.messageRepository = messageRepository;

@@ -31,7 +31,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
         @Sql("/sql/dataMessage.sql")
 })
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles({"test", "enable-jpa-audition"})
+//@ActiveProfiles({"test", "enable-jpa-audition"})
 @PostgreSQLTestContainer
 @DirtiesContext
 public class MessageRepositoryTest {

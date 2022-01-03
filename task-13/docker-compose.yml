@@ -5,17 +5,17 @@ services:
     restart: always
     container_name: db
     environment:
-      - POSTGRES_DB=postgresn
+#      - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5432:5432"
-#  app:
-#    image: springboot-postgresql
-#    build: ./
-#    restart: always
-#    container_name: app
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - "db"
+      - "5477:5432"  #коннект к БД порт - 5477 в appl.properties
+  app:
+    image: springboot-postgresql
+    build: ./
+    restart: always
+    container_name: app
+    ports:
+      - "8088:8080"  #приложение поднимается на порту 8088 docker-compose up
+    depends_on:
+      - "db"
