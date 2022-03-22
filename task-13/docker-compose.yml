@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres:13.3
+    restart: always
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+#    ports:
+#      - "5477:5432"  #коннект к БД порт - 5477 в appl.properties. Для запуска всего в докере --- не нужно
+
+  app:
+    image: springboot-postgresql
+    build: ./
+    container_name: app
+    ports:
+      - "8088:8080"  #приложение поднимается на порту 8088 docker-compose up
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+
+
+
+#  app:
+#    image: springboot-postgresql
+#    build: ./
+#    restart: always
+#    container_name: app
+#    ports:
+#      - "8088:8080"  #приложение поднимается на порту 8088 docker-compose up
+#    depends_on:
+#      - "db"
